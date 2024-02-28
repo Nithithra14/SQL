@@ -1,0 +1,29 @@
+-- Create the Employee table (if not exists)
+CREATE TABLE IF NOT EXISTS Employee (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(50),
+    Department VARCHAR(50),
+    Salary DECIMAL(10, 2)
+);
+
+-- Insert sample data (optional)
+INSERT INTO Employee (Name, Department, Salary) VALUES
+    ('John Doe', 'HR', 12000.00),
+    ('Alice Smith', 'IT', 15000.00),
+    ('Bob Johnson', 'Finance', 9000.00),
+    ('Eva Williams', 'Marketing', 11000.00);
+
+-- Create the procedure
+DELIMITER //
+
+CREATE PROCEDURE GetHighSalaryEmployees()
+BEGIN
+    -- Retrieve records where salary > 10000
+    SELECT Name, Department, Salary
+    FROM Employee
+    WHERE Salary > 10000;
+END //
+
+DELIMITER ;
+-- Call the procedure
+CALL GetHighSalaryEmployees();
