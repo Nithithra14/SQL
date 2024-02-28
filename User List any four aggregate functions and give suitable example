@@ -1,0 +1,5 @@
+SELECT COUNT(*) AS total_records FROM employees;
+SELECT SUM(salary) AS total_salary FROM employees;
+SELECT AVG(age) AS average_age FROM employees;
+SELECT MAX(salary) AS max_salary FROM employees;
+
