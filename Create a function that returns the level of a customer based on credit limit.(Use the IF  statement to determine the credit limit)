@@ -1,0 +1,23 @@
+-- Create the database
+CREATE DATABASE IF NOT EXISTS customer_database;
+USE customer_database;
+
+-- Create the function
+DELIMITER //
+
+CREATE FUNCTION get_customer_level(credit_limit DECIMAL(10, 2)) RETURNS VARCHAR(20)
+BEGIN
+    DECLARE customer_level VARCHAR(20);
+
+    IF credit_limit < 1000 THEN
+        SET customer_level = 'Low Credit';
+    ELSEIF credit_limit >= 1000 AND credit_limit < 5000 THEN
+        SET customer_level = 'Medium Credit';
+    ELSE
+        SET customer_level = 'High Credit';
+    END IF;
+
+    RETURN customer_level;
+END //
+
+DELIMITER ;
