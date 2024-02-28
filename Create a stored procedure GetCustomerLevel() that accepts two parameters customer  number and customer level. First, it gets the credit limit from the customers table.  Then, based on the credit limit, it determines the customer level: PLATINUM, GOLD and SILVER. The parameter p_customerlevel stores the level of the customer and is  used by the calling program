@@ -1,0 +1,27 @@
+-- Assuming you have a 'customers' table with columns 'customer_number' and 'credit_limit'
+-- Create the stored procedure
+DELIMITER //
+
+CREATE PROCEDURE GetCustomerLevel(
+    IN p_customer_number INT,
+    OUT p_customer_level VARCHAR(20)
+)
+BEGIN
+    DECLARE credit_limit DECIMAL(10, 2);
+
+    -- Get the credit limit from the customers table
+    SELECT credit_limit INTO credit_limit
+    FROM customers
+    WHERE customer_number = p_customer_number;
+
+    -- Determine the customer level based on the credit limit
+    IF credit_limit >= 10000 THEN
+        SET p_customer_level = 'PLATINUM';
+    ELSEIF credit_limit >= 5000 THEN
+        SET p_customer_level = 'GOLD';
+    ELSE
+        SET p_customer_level = 'SILVER';
+    END IF;
+END //
+
+DELIMITER ;
