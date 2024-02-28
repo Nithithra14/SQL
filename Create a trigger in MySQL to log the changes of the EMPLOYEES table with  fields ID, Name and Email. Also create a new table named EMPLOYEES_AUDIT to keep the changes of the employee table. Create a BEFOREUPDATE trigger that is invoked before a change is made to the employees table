@@ -1,0 +1,31 @@
+-- Create the EMPLOYEES table (if not exists)
+CREATE TABLE IF NOT EXISTS EMPLOYEES (
+    ID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Email VARCHAR(50)
+);
+
+-- Create the EMPLOYEES_AUDIT table
+CREATE TABLE IF NOT EXISTS EMPLOYEES_AUDIT (
+    AuditID INT AUTO_INCREMENT PRIMARY KEY,
+    EmployeeID INT,
+    OldName VARCHAR(50),
+    NewName VARCHAR(50),
+    OldEmail VARCHAR(50),
+    NewEmail VARCHAR(50),
+    ChangeDateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create the BEFORE UPDATE trigger
+DELIMITER //
+
+CREATE TRIGGER before_update_employees
+BEFORE UPDATE ON EMPLOYEES
+FOR EACH ROW
+BEGIN
+    -- Log the changes into EMPLOYEES_AUDIT table
+    INSERT INTO EMPLOYEES_AUDIT (EmployeeID, OldName, NewName, OldEmail, NewEmail)
+    VALUES (OLD.ID, OLD.Name, NEW.Name, OLD.Email, NEW.Email);
+END //
+
+DELIMITER ;
