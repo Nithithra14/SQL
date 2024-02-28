@@ -1,0 +1,32 @@
+-- Create the database
+CREATE DATABASE IF NOT EXISTS my_income_database;
+USE my_income_database;
+
+-- Create the function
+DELIMITER //
+
+CREATE FUNCTION calculate_income_level(initial_income INT) RETURNS VARCHAR(20)
+BEGIN
+    DECLARE income INT;
+    DECLARE income_level VARCHAR(20);
+
+    SET income = initial_income;
+
+    my_loop: LOOP
+        -- Your logic to calculate or update income
+        -- For example, you might increment income here
+        SET income = income + 1000;
+
+        -- Check if income is greater than or equal to 4000
+        IF income >= 4000 THEN
+            SET income_level = 'High Income';
+            LEAVE my_loop;  -- Terminate the loop
+        ELSE
+            SET income_level = 'Low Income';
+        END IF;
+    END LOOP my_loop;
+
+    RETURN income_level;
+END //
+
+DELIMITER ;
