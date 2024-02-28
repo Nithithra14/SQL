@@ -1,0 +1,27 @@
+-- Create the Project table
+CREATE TABLE Project (
+    S_No INT AUTO_INCREMENT PRIMARY KEY,
+    P_Name VARCHAR(50),
+    Coordinators VARCHAR(50),
+    P_Price DECIMAL(10, 2),
+    Location VARCHAR(50)
+);
+
+-- Insert sample data
+INSERT INTO Project (P_Name, Coordinators, P_Price, Location) VALUES
+    ('Project1', 'John', 5000.00, 'City1'),
+    ('Project2', 'Alice', 8000.00, 'City2'),
+    ('Project3', 'Bob', 6000.00, 'City1'),
+    ('Project4', 'Alice', 7000.00, 'City3'),
+    ('Project5', 'John', 5500.00, 'City2'),
+    ('Project6', 'Bob', 9000.00, 'City3');
+
+-- Select rows using GROUP BY clause for Location
+SELECT Location, COUNT(*) AS ProjectCount
+FROM Project
+GROUP BY Location;
+
+-- Select rows order by Coordinators
+SELECT * 
+FROM Project
+ORDER BY Coordinators;
