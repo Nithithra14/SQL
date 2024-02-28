@@ -1,0 +1,19 @@
+-- Create a table named 'example_table'
+CREATE TABLE example_table (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    value INT
+);
+
+-- Insert 10 records into 'example_table'
+INSERT INTO example_table (name, value) VALUES
+    ('Record1', 10),
+    ('Record2', 20),
+    ('Record3', 30),
+    ('Record4', 40),
+    ('Record5', 50),
+    ('Record6', 60),
+    ('Record7', 70),
+    ('Record8', 80),
+    ('Record9', 90),
+    ('Record10', 100);
