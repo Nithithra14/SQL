@@ -1,0 +1,31 @@
+-- Create the workers table
+CREATE TABLE workers (
+    S_No INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Designation VARCHAR(50),
+    Branch VARCHAR(50)
+);
+
+-- Insert sample data
+INSERT INTO workers (S_No, Name, Designation, Branch) VALUES
+    (1, 'Ram', 'Manager', 'Chennai'),
+    (2, 'Santhosh', 'Supervisor', 'Madurai'),
+    (3, 'Hari', 'Assistant', 'Trichy');
+
+-- Alter the table by adding a column Salary
+ALTER TABLE workers ADD COLUMN Salary DECIMAL(10, 2);
+
+-- Alter the table by modifying the column Name
+ALTER TABLE workers MODIFY COLUMN Name VARCHAR(100);
+
+-- Describe the table 'workers'
+DESCRIBE workers;
+
+-- Copy the table 'workers' as 'emp'
+CREATE TABLE emp AS SELECT * FROM workers;
+
+-- Delete the Second row from the table
+DELETE FROM workers WHERE S_No = 2;
+
+-- Drop the table
+DROP TABLE workers;
