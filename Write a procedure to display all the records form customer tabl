@@ -1,0 +1,10 @@
+-- Create the procedure
+DELIMITER //
+
+CREATE PROCEDURE display_all_customers()
+BEGIN
+    -- Select all records from the customer table
+    SELECT * FROM customer;
+END //
+
+DELIMITER ;
