@@ -1,0 +1,13 @@
+-- Assuming you have an 'employees' table with columns 'name', 'designation', and 'salary'
+-- Create the stored procedure
+DELIMITER //
+
+CREATE PROCEDURE ListHighSalaryEmployees()
+BEGIN
+    -- Select records where salary is more than 50,000
+    SELECT *
+    FROM employees
+    WHERE salary > 50000;
+END //
+
+DELIMITER ;
