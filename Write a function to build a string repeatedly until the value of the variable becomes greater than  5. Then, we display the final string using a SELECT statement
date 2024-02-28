@@ -1,0 +1,27 @@
+CREATE DATABASE IF NOT EXISTS my_string_database;
+USE my_string_database;
+CREATE TABLE IF NOT EXISTS string_data (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    final_string VARCHAR(255)
+);
+DELIMITER //
+
+CREATE PROCEDURE build_string_until_greater_than_five()
+BEGIN
+    DECLARE result_string VARCHAR(255) DEFAULT '';
+    DECLARE variable INT DEFAULT 0;
+
+    WHILE variable <= 5 DO
+        SET result_string = CONCAT(result_string, 'YourString');  -- Replace 'YourString' with the desired content
+        SET variable = variable + 1;
+    END WHILE;
+
+    
+    SELECT result_string AS final_string;
+    
+    
+    INSERT INTO string_data (final_string) VALUES (result_string);
+END //
+
+DELIMITER ;
+CALL build_string_until_greater_than_five();
