@@ -1,0 +1,22 @@
+CREATE DATABASE IF NOT EXISTS my_factorial_database;
+USE my_factorial_database;
+
+DELIMITER //
+
+CREATE PROCEDURE calculate_factorial(IN n INT, OUT result INT)
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    DECLARE factorial INT DEFAULT 1;
+
+    WHILE i <= n DO
+        SET factorial = factorial * i;
+        SET i = i + 1;
+    END WHILE;
+
+    SET result = factorial;
+END //
+
+DELIMITER ;
+CALL calculate_factorial(5, @result);
+INSERT INTO factorial_data (number, factorial_result) VALUES (5, calculate_factorial(5));
+SELECT @result AS factorial_of_5;
