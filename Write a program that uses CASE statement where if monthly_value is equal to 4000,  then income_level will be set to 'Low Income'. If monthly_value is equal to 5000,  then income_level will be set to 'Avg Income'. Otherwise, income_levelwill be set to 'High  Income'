@@ -1,0 +1,21 @@
+-- Create the table for demonstration purposes (optional)
+CREATE TABLE IF NOT EXISTS income_data (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    monthly_value INT,
+    income_level VARCHAR(20)
+);
+
+-- Insert sample data (optional)
+INSERT INTO income_data (monthly_value) VALUES (4000), (5000), (6000);
+
+-- Update the income_level based on the monthly_value using the CASE statement
+UPDATE income_data
+SET income_level = 
+    CASE
+        WHEN monthly_value = 4000 THEN 'Low Income'
+        WHEN monthly_value = 5000 THEN 'Avg Income'
+        ELSE 'High Income'
+    END;
+
+-- Display the updated data
+SELECT * FROM income_data;
