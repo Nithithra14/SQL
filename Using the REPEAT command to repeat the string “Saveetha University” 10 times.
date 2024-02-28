@@ -1,2 +1,21 @@
 -- Use the REPEAT function to repeat the string "Saveetha University" 10 times
 SELECT REPEAT('Saveetha University ', 10) AS repeated_string;
+OR
+DELIMITER //
+
+CREATE PROCEDURE RepeatString()
+BEGIN
+    DECLARE repeated_string VARCHAR(255);
+
+    -- Use the REPEAT function to repeat the string "Saveetha University" 10 times
+    SET repeated_string = REPEAT('Saveetha University ', 10);
+
+    -- Display the result
+    SELECT repeated_string AS result;
+END //
+
+DELIMITER ;
+
+-- Call the stored procedure
+CALL RepeatString();
+
